@@ -1,9 +1,12 @@
 
+import { useContext } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
+import { TaskContext } from "../context/TaskContext.jsx";
 
-const List = ({ handleDelete, currTask, handleComplete, completed, handleEditTask }) => {
+const List = ({currTask,completed}) => {
+ const {handleDelete, handleComplete, handleEditTask } = useContext(TaskContext)
   return (
     <section>
       <div className="p-4">

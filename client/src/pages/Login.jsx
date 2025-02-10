@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom"
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom'
+import { TaskContext } from "../context/TaskContext";
 
-const Login = ({url}) => {
-  // const url = 'http://localhost:4000'
-  const newUrl = url;
+const Login = () => {
+  const {url,setLoggedIn} = useContext(TaskContext)
   const navigate = useNavigate();
    const[user,setUser] = useState({
       email: "",
@@ -24,9 +24,11 @@ const Login = ({url}) => {
       e.preventDefault();
       console.log(user);
       try {
-        const response = await axios.post(`${newUrl}/api/v1/auth/login`,user);
+        const response = await axios.post(`${url}/api/v1/auth/login`,user);
+        localStorage.setItem("UsersDetails", JSON.stringify(response.data.user));
         if(response.data.success){
           toast.success(response.data.message);
+          setLoggedIn(true);
           navigate('/homepage')
         }
         else{
