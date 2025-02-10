@@ -9,7 +9,7 @@ const TaskContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [loggedIn,setLoggedIn] = useState(false)
   const [todos, setTodos] = useState([]);
-  const url = "https://mern-todo-backend-oi1r.onrender.com"
+  const url = "https://mern-todo-backend-g9ya.onrender.com"
   const [task, setTask] = useState({
     title: "",
     description: "",
